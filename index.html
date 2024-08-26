@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Aventura</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <p id="text">Você é um jovem que sofreu um acidente de carro e reencarnou em um mundo de magia e heróis.</p>
+        <p id="text">Confuso e desorientado, uma voz ecoou em sua mente, revelando que você foi convocado para uma missão crucial.</p>
+        <p id="text">Você é guiado até uma casa de madeira escura coberta de musgos. Dentro da casa, você encontra uma mochila e uma espada.</p>
+        <p id="text">Você decide levar a espada consigo.</p>
+
+        <p id="text">À sua frente, estendem-se dois caminhos distintos.</p>
+        <button class="button" onclick="choosePath(1)">Ir para a caverna</button>
+        <button class="button" onclick="choosePath(2)">Ir para a colina</button>
+
+        <div id="cave" class="hidden">
+            <p id="text">Seguindo em diante, você se aproxima da caverna e percebe seu vasto tamanho e profundidade.</p>
+            <p id="text">Você decide explorar a caverna.</p>
+            <p id="text">Ao entrar dentro da caverna, você se depara com um monstro poderoso.</p>
+            <p id="text">O monstro é muito poderoso e você percebe que não consegue lutar contra ele.</p>
+            <p id="text">Você foge da caverna, se sente perdido e decide desistir de ser herói.</p>
+            <p id="text">Você vira um camponês e vive em paz.</p>
+            <p id="text">Fim do jogo: Você desistiu de ser herói e encontrou a paz como camponês.</p>
+        </div>
+
+        <div id="hill" class="hidden">
+            <p id="text">Você decide seguir para a colina.</p>
+            <p id="text">Depois de um certo tempo caminhando, você se encontra com um senhor idoso.</p>
+            <p id="text">O senhor lhe dá a missão de encontrar um tesouro.</p>
+            <p id="text">Você aceita a missão?</p>
+            <button class="button" onclick="acceptMission()">Sim</button>
+            <button class="button" onclick="declineMission()">Não</button>
+        </div>
+
+        <div id="mission" class="hidden">
+            <p id="text">Você decide ir em busca do tesouro.</p>
+            <p id="text">Durante sua busca, você encontra o monstro que está protegendo o tesouro.</p>
+            <p id="text">Você decide enfrentar o monstro.</p>
+            <p id="text">Escolha o que fazer:</p>
+            <button class="button" onclick="fightMonster()">Enfrentar o monstro</button>
+            <button class="button" onclick="runAway()">Fugir</button>
+        </div>
+
+        <div id="fight" class="hidden">
+            <p id="text">Você enfrenta o monstro e consegue derrotá-lo.</p>
+            <p id="text">Você encontra o tesouro e tem uma vitória heroica.</p>
+            <p id="text">Fim do jogo: Você é celebrado como um verdadeiro herói e encontra a recompensa que procurava.</p>
+        </div>
+
+        <div id="run" class="hidden">
+            <p id="text">Você decide fugir e continua sozinho.</p>
+            <p id="text">Você entra em uma dungeon e encontra um exército de mortos-vivos.</p>
+            <p id="text">Você recebe um ataque fatal dos mortos-vivos.</p>
+            <p id="text">Você enfrenta uma morte lenta e dolorosa.</p>
+            <p id="text">Fim do jogo: Você sofre uma morte lenta e dolorosa, sem alcançar seus objetivos.</p>
+        </div>
+
+        <div id="noMission" class="hidden">
+            <p id="text">Fim do jogo: Você recusa um evento canônico e o velho mata você. O jogo se encerra.</p>
+        </div>
+    </div>
+
+    <script>
+        function choosePath(choice) {
+            document.getElementById('cave').classList.add('hidden');
+            document.getElementById('hill').classList.add('hidden');
+
+            if (choice === 1) {
+                document.getElementById('cave').classList.remove('hidden');
+            } else if (choice === 2) {
+                document.getElementById('hill').classList.remove('hidden');
+            }
+        }
+
+        function acceptMission() {
+            document.getElementById('hill').classList.add('hidden');
+            document.getElementById('mission').classList.remove('hidden');
+        }
+
+        function declineMission() {
+            document.getElementById('hill').classList.add('hidden');
+            document.getElementById('noMission').classList.remove('hidden');
+        }
+
+        function fightMonster() {
+            document.getElementById('mission').classList.add('hidden');
+            document.getElementById('fight').classList.remove('hidden');
+        }
+
+        function runAway() {
+            document.getElementById('mission').classList.add('hidden');
+            document.getElementById('run').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
